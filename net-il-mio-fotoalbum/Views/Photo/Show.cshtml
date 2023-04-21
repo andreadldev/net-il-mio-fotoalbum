@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<a href="@Url.Action("Index", "Photo")">Indietro</a>
+<a class="mx-2" href="@Url.Action("Edit", "Photo", new { Id = @Model.Id })">Modifica</a>
+<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Elimina
+</button>
+
+<div class="d-flex flex-column text-center py-5">
+    <img class="m-auto" width="500" src="/@Model.Url" alt="...">
+    <div class="px-5 py-4">
+        <h1>@Model.Title</h1>
+        <p>@Model.Description</p>
+        <br />
+        @foreach (var category in Model.Categories)
+        {
+            <div>@category.Name</div>
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                Sei sicuro?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Torna indietro</button>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "Photo", new { Id = @Model.Id })">Elimina</a>
+            </div>
+        </div>
+    </div>
+</div>

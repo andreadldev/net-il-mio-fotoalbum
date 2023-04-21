@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.btn-link {
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}

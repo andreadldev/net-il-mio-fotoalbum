@@ -22,42 +22,42 @@ namespace net_il_mio_fotoalbum.Models
 					(
 						title: "Lago",
 						description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada accumsan mi, vel aliquam massa placerat sit amet. Nulla sit amet vestibulum nulla.",
-						url: "~/img/land1.jpg",
+						url: "img/land1.jpg",
 						visible: true
 					),
 					new
 					(
 						title: "Mountagne 1",
 						description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada accumsan mi, vel aliquam massa placerat sit amet. Nulla sit amet vestibulum nulla.",
-						url: "~/img/land2.jpg",
+						url: "img/land2.jpg",
 						visible: true
 					),
 					new
 					(
 						title: "Mountagne 2",
 						description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada accumsan mi, vel aliquam massa placerat sit amet. Nulla sit amet vestibulum nulla.",
-						url: "~/img/land3.jpg",
+						url: "img/land3.jpg",
 						visible: true
 					),
 					new
 					(
 						title: "Strada",
 						description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada accumsan mi, vel aliquam massa placerat sit amet. Nulla sit amet vestibulum nulla.",
-						url: "~/img/city1.jpg",
+						url: "img/city1.jpg",
 						visible: true
 					),
 					new
 					(
 						title: "Città 1",
 						description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada accumsan mi, vel aliquam massa placerat sit amet. Nulla sit amet vestibulum nulla.",
-						url: "~/img/city2.jpg",
+						url: "img/city2.jpg",
 						visible: true
 					),
 					new
 					(
 						title: "Città 2",
 						description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada accumsan mi, vel aliquam massa placerat sit amet. Nulla sit amet vestibulum nulla.",
-						url: "~/img/city3.jpg",
+						url: "img/city3.jpg",
 						visible: true
 					),
 				};

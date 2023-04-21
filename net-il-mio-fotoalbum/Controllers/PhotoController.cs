@@ -20,6 +20,14 @@ namespace net_il_mio_fotoalbum.Controllers
 			return View("Index", photoGallery);
 		}
 
+        public IActionResult Show(long id)
+        {
+            using var ctx = new PhotoContext();
+            var singlePhoto = ctx.Photos.Include(photo => photo.Categories).First(photo => photo.Id == id);
+
+            return View("Show", singlePhoto);
+        }
+
         [HttpGet]
         public IActionResult Create()
 		{
@@ -166,5 +174,21 @@ namespace net_il_mio_fotoalbum.Controllers
 
             return RedirectToAction("Index");
         }
-	}
+
+        public IActionResult Delete(long id)
+        {
+            using var ctx = new PhotoContext();
+            Photo photo = ctx.Photos.Where(photo => photo.Id == id).FirstOrDefault();
+
+            if (photo == null)
+            {
+                return NotFound();
+            }
+
+            ctx.Photos.Remove(photo);
+            ctx.SaveChanges();
+            return RedirectToAction("Index");
+            
+        }
+    }
 }
