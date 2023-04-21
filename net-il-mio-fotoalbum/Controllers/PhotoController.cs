@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using net_il_mio_fotoalbum.Models;
 
 namespace net_il_mio_fotoalbum.Controllers
@@ -84,6 +85,86 @@ namespace net_il_mio_fotoalbum.Controllers
 			ctx.SaveChanges();
 
 			return RedirectToAction("Index");
+        }
+
+		[HttpGet]
+		public IActionResult Edit (long id)
+		{
+            using var ctx = new PhotoContext();
+
+			Photo edit_photo = ctx.Photos.Where(photo => photo.Id == id).Include(photo => photo.Categories).FirstOrDefault();
+			if (edit_photo == null)
+			{
+				return NotFound();
+			}
+			else
+			{
+				List<Category> categories = ctx.Categories.ToList();
+				List<SelectListItem> listCategories = new List<SelectListItem>();
+                foreach (Category category in categories)
+                {
+                    listCategories.Add(new SelectListItem()
+                    {
+                        Text = category.Name,
+                        Value = category.Id.ToString()
+                    });
+                }
+
+				PhotoFormModel model = new PhotoFormModel();
+				model.Photo = edit_photo;
+				model.Categories = listCategories;
+
+				return View("Edit", model);
+            }
+        }
+
+		[HttpPost]
+		public IActionResult Update(long id, PhotoFormModel data)
+		{
+            using var ctx = new PhotoContext();
+
+            if (!ModelState.IsValid)
+            {
+
+                List<Category> categories = ctx.Categories.ToList();
+                List<SelectListItem> listCategories = new List<SelectListItem>();
+                foreach (Category category in categories)
+                {
+                    listCategories.Add(new SelectListItem()
+                    {
+                        Text = category.Name,
+                        Value = category.Id.ToString()
+                    });
+                }
+				data.Photo = ctx.Photos.Where(p => p.Id == id).FirstOrDefault();
+                data.Categories = listCategories;
+
+                return View("Create", data);
+            }
+
+            Photo edit_photo = ctx.Photos.Where(photo => photo.Id == id).Include(photo => photo.Categories).FirstOrDefault();
+            if (edit_photo == null)
+            {
+                return NotFound();
+            }
+            edit_photo.Title = data.Photo.Title;
+            edit_photo.Description = data.Photo.Description;
+            edit_photo.Url = data.Photo.Url;
+            edit_photo.Visible = data.Photo.Visible;
+            edit_photo.Categories.Clear();
+
+            if (data.SelectedCategories != null)
+            {
+                foreach (string selectedCategoryId in data.SelectedCategories)
+                {
+                    int selectedIntCategoryId = int.Parse(selectedCategoryId);
+                    Category category = ctx.Categories.Where(x => x.Id == selectedIntCategoryId).FirstOrDefault();
+                    edit_photo.Categories.Add(category);
+                }
+            }
+            ctx.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 	}
 }
