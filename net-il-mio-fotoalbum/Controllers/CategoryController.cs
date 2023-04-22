@@ -86,14 +86,14 @@ namespace net_il_mio_fotoalbum.Controllers
         public IActionResult Delete(long id)
         {
             using var ctx = new PhotoContext();
-            Photo photo = ctx.Photos.Where(photo => photo.Id == id).FirstOrDefault();
+            Category category = ctx.Categories.Where(category => category.Id == id).FirstOrDefault();
 
-            if (photo == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            ctx.Photos.Remove(photo);
+            ctx.Categories.Remove(category);
             ctx.SaveChanges();
             return RedirectToAction("Index");
             
