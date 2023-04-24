@@ -17,5 +17,20 @@ namespace net_il_mio_fotoalbum.Controllers.Api
 
             return Ok(photos.ToList());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetPhotoByID(int id)
+        {
+            using var ctx = new PhotoContext();
+
+            var photo = ctx.Photos.FirstOrDefault(p => p.Id == id);
+
+            if (photo == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(photo);
+        }
     }
 }

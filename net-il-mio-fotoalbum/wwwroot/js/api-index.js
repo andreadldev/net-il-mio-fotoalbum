@@ -33,7 +33,9 @@ const photoComponent = photo => `
     <div class="col-12 col-md-6 text-center d-flex flex-column align-items-center py-3 justify-content-center">
         <div class="d-flex flex-column px-2 w-100 h-100">
             <div class="w-100 h-100">
+            <a href="/photo/show/${photo.id}">
                 <img class="h-100 w-100" style="object-fit: cover;" src="/${photo.url}" alt="...">
+            </a>
             </div>
             <h5>${photo.title}</h5>
             <p>${photo.description}</p>

@@ -4,28 +4,74 @@
     ViewData["photoActive"] = true;
 }
 
+
 <div class="container bg-light" id="menu">
     <div class="text-center pt-4 text-danger">
         <h1>Titolo</h1>
         <a href="@Url.Action("Create", "Photo")">Aggiungi foto</a>
         <h2>@ViewData["Message"]</h2>
     </div>
-     <div class="row d-flex flex-wrap">
-        @for (int i = 0; i < Model.Length; i++)
-        {
-            <div class="col-12 col-md-6 text-center  d-flex flex-column align-items-center py-3 justify-content-center">
-                <div class="w-100 h-100">
-                    <a href="@Url.Action("Show", "Photo", new { Id = @Model[i].Id })">
-                        <img class="h-100 w-100" style="object-fit: cover;" src="/@Model[i].Url" alt="...">
-                    </a>
-                </div>
-                <div class="d-flex flex-column px-2">
-                    <a href="@Url.Action("Show", "Photo", new { Id = @Model[i].Id })">
-                        <h5>@Model[i].Title</h5>
-                    </a>
-                    <p>@Model[i].Description</p>
-                </div>
-            </div>
-        }
-    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="col-2">ID</th>
+                <th scope="col" class="col-3">Foto</th>
+                <th scope="col" class="col-3">Titolo</th>
+                <th scope="col" class="col-3"> Opzioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Length; i++)
+                {
+                    <tr>
+                        <th class="align-middle" scope="row">@Model[i].Id</th>
+                        <td class="align-middle w-25 pe-5">
+                            <img class=" h-100 w-100" style="object-fit: cover;" src="/@Model[i].Url" alt="...">
+                        </td>
+                        <td class="align-middle">@Model[i].Title</td>
+                        <td class="align-middle">
+                            <div class="d-flex">
+                                <a class="btn btn-custom btn-secondary" href="/photo/show/@Model[i].Id">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a class="btn btn-custom btn-secondary mx-1" href="/photo/edit/@Model[i].Id">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                            <button type="button" class="btn btn-custom btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+
+                            @*================MODAL================*@
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <div class="modal-body">
+                                                Sei sicuro?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Torna indietro</button>
+                                            <a class="btn btn-danger" href="/photo/Delete/@Model[i].Id">Elimina</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @*================MODAL================*@
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+        </tbody>
+    </table>
 </div>
+
+@section Styles
+{
+    <style>
+        .btn-custom {
+            padding: 5px 10px;
+        }
+    </style>
+}
