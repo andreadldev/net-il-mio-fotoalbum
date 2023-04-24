@@ -1,8 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+    ViewData["categoryActive"] = true;
 }
 
-<div class="container p-3 bg-light" id="menu">
+<div class="container bg-light" id="menu">
     <div class="text-center pt-4 text-danger">
         <h1>Titolo</h1>
         <a href="@Url.Action("Create", "Category")">Aggiungi categoria</a>

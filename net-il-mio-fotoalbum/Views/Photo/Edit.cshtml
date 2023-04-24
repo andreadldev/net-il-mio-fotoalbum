@@ -1,6 +1,7 @@
 ﻿@model PhotoFormModel
 @{
-    ViewData["Title"] = "Home Page";
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+    ViewData["photoActive"] = true;
 }
 
 <a href="@Url.Action("Index", "Photo")">Indietro</a>

@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 //using net_il_mio_fotoalbum.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("PhotoContextConnection") ?? throw new InvalidOperationException("Connection string 'PhotoContextConnection' not found.");
 
 builder.Services.AddDbContext<PhotoContext>();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+	.AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<PhotoContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -30,7 +32,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Photo}/{action=Index}/{id?}");
+	pattern: "{controller=Photo}/{action=ApiIndex}/{id?}");
 app.MapRazorPages();
 
 var ctx = new PhotoContext();

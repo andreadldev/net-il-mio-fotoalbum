@@ -1,11 +1,12 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    width: calc(100vw - 34px);
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {

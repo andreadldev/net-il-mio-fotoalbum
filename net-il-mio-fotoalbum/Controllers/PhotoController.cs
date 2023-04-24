@@ -20,6 +20,11 @@ namespace net_il_mio_fotoalbum.Controllers
 			return View("Index", photoGallery);
 		}
 
+        public IActionResult ApiIndex()
+        {
+            return View();
+        }
+
         public IActionResult Show(long id)
         {
             using var ctx = new PhotoContext();

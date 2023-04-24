@@ -1,20 +1,24 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+    ViewData["photoActive"] = true;
 }
 
-<div class="container p-3 bg-light" id="menu">
+<div class="container bg-light" id="menu">
     <div class="text-center pt-4 text-danger">
         <h1>Titolo</h1>
         <a href="@Url.Action("Create", "Photo")">Aggiungi foto</a>
         <h2>@ViewData["Message"]</h2>
     </div>
-       <div class="row d-flex flex-wrap">
+     <div class="row d-flex flex-wrap">
         @for (int i = 0; i < Model.Length; i++)
         {
             <div class="col-12 col-md-6 text-center  d-flex flex-column align-items-center py-3 justify-content-center">
-                <a href="@Url.Action("Show", "Photo", new { Id = @Model[i].Id })">
-                    <img width="300" src="@Model[i].Url" alt="...">
-                </a>
+                <div class="w-100 h-100">
+                    <a href="@Url.Action("Show", "Photo", new { Id = @Model[i].Id })">
+                        <img class="h-100 w-100" style="object-fit: cover;" src="/@Model[i].Url" alt="...">
+                    </a>
+                </div>
                 <div class="d-flex flex-column px-2">
                     <a href="@Url.Action("Show", "Photo", new { Id = @Model[i].Id })">
                         <h5>@Model[i].Title</h5>

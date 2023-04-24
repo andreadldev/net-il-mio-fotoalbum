@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="container px-5 bg-light" id="menu">
+    <div class="text-center pt-4 text-danger">
+        <h1>Menù foto API</h1>
+        <h2>@ViewData["Message"]</h2>
+    </div>
+
+    <p id="loader">...</p>
+
+    <p id="emptyMessage">Nessun elemento presente</p>
+
+    <div>
+@*        <div class="my-4" id="filter">
+            <div class="form-field">
+                <label>Filtra per nome:</label>
+                <input placeholder="nome pizza" />
+            </div>
+        </div>*@
+
+        <div id="table">
+            <div id="photoList" class="row d-flex flex-wrap">
+
+            </div>  
+        </div>
+
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        loadPhotos();
+    </script>
+}
