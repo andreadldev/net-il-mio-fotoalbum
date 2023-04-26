@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using net_il_mio_fotoalbum.Models;
+using System.Data;
 
 namespace net_il_mio_fotoalbum.Controllers
 {
 	public class CategoryController : Controller
 	{
-		public IActionResult Index()
+        [Authorize(Roles = "ADMIN")]
+        public IActionResult Index()
 		{
 			ViewData["Title"] = "Homepage";
 			using var ctx = new PhotoContext();
@@ -20,13 +23,15 @@ namespace net_il_mio_fotoalbum.Controllers
 			return View("Index", categoryList);
 		}
 
+        [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public IActionResult Create()
 		{
 			return View("Create");
         }
 
-		[HttpPost]
+        [Authorize(Roles = "ADMIN")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category data)
 		{
@@ -45,7 +50,8 @@ namespace net_il_mio_fotoalbum.Controllers
 			return RedirectToAction("Index");
         }
 
-		[HttpGet]
+        [Authorize(Roles = "ADMIN")]
+        [HttpGet]
 		public IActionResult Edit (long id)
 		{
             using var ctx = new PhotoContext();
@@ -61,7 +67,8 @@ namespace net_il_mio_fotoalbum.Controllers
             }
         }
 
-		[HttpPost]
+        [Authorize(Roles = "ADMIN")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
 		public IActionResult Update(long id, Category data)
 		{
@@ -83,6 +90,7 @@ namespace net_il_mio_fotoalbum.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Delete(long id)
         {
             using var ctx = new PhotoContext();

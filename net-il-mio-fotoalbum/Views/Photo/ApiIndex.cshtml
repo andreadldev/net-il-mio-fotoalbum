@@ -13,12 +13,12 @@
     <p id="emptyMessage">Nessun elemento presente</p>
 
     <div>
-@*        <div class="my-4" id="filter">
+        <div id="filter">
             <div class="form-field">
                 <label>Filtra per nome:</label>
-                <input placeholder="nome pizza" />
+                <input id="search-input" placeholder="Nome" />
             </div>
-        </div>*@
+        </div>
 
         <div id="table">
             <div id="photoList" class="row d-flex flex-wrap">
@@ -32,5 +32,6 @@
 {
     <script>
         loadPhotos();
+        initFilter();
     </script>
 }

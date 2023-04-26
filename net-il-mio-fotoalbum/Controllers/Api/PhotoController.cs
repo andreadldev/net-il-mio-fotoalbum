@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 //using net_il_mio_fotoalbum.Areas.Identity.Data;
 using net_il_mio_fotoalbum.Models;
 
@@ -10,12 +11,14 @@ namespace net_il_mio_fotoalbum.Controllers.Api
     public class PhotoController : ControllerBase
     {
         [HttpGet]
-        public IActionResult GetPhotos()
+        public IActionResult GetPhotos([FromQuery] string? title)
         {
             using var ctx = new PhotoContext();
-            IQueryable<Photo> photos = ctx.Photos;
+            var photos = ctx.Photos
+                .Where(f => title == null || f.Title.ToLower().Contains(title.ToLower()))
+                .Where(f => f.Visible).ToList();
 
-            return Ok(photos.ToList());
+            return Ok(photos);
         }
 
         [HttpGet("{id}")]

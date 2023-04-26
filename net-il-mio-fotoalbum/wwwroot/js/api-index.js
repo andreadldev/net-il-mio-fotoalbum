@@ -1,4 +1,6 @@
-﻿const loadPhotos = filter => getPhotos(filter).then(renderPhotos);
+﻿const loadPhotos = filter => getPhotos(filter).then(photos => {
+    renderPhotos(photos)
+});
 
 const getPhotos = title => axios
     .get('/api/photo', title ? { params: { title } } : {})
@@ -9,11 +11,11 @@ const renderPhotos = photos => {
     const loader = document.querySelector("#loader");
     const tbody = document.querySelector("#photoList");
     const table = document.querySelector("#table");
-    //const filter = document.querySelector("#filter");
+    const filter = document.querySelector("#filter");
 
     if (photos && photos.length > 0) {
         table.style.display = "block";
-        //filter.style.display = "block";
+        filter.style.display = "block";
         emptyMessage.style.display = "none";
     }
     else emptyMessage.style.display = "block";
@@ -23,14 +25,14 @@ const renderPhotos = photos => {
     tbody.innerHTML = photos.map(photoComponent).join('');
 };
 
-//const initFilter = () => {
-//    const filter = document.querySelector("#filter input");
-//    filter.addEventListener("keyup", (e) => loadPizzas(e.target.value))
-//};
+const initFilter = () => {
+    const filter = document.querySelector("#filter input");
+    filter.addEventListener("input", (e) => loadPhotos(e.target.value))
+};
 
 const photoComponent = photo => `
 
-    <div class="col-12 col-md-6 text-center d-flex flex-column align-items-center py-3 justify-content-center">
+    <div id="pippo-${photo.id}" class="col-12 col-md-6 text-center d-flex flex-column align-items-center py-3 justify-content-center">
         <div class="d-flex flex-column px-2 w-100 h-100">
             <div class="w-100 h-100">
             <a href="/photo/show/${photo.id}">
