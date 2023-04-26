@@ -63,6 +63,15 @@
                         {
                             <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Category")">Categorie</a></li>
                         }
+
+                        @if (ViewData["messageActive"] as bool? ?? false)
+                        {
+                            <li class="nav-item"><a class="nav-link active" href="@Url.Action("Index", "Message")">Messaggi</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Message")">Messaggi</a></li>
+                        }
                     </ul>
 
                 </div>

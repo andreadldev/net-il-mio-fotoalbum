@@ -4,7 +4,7 @@
 
 <div class="container px-5 bg-light" id="menu">
     <div class="text-center pt-4 text-danger">
-        <h1>Menù foto API</h1>
+        <h1>Galleria</h1>
         <h2>@ViewData["Message"]</h2>
     </div>
 
@@ -26,6 +26,21 @@
             </div>  
         </div>
     </div>
+
+	<form class="mt-5 w-50" id="post-create-form">
+        <h3>Contattaci</h3>
+		<div class="form-group">
+			<label for="email">Email</label>
+            <input class="form-control" id="email" />
+			<span id="email-errors"></span>
+		</div>
+		<div class="form-field">
+			<label for="text">Messaggio</label>
+            <textarea class="form-control" id="text"></textarea>
+            <span id="text-errors"></span>
+		</div>
+		<button class="my-3 btn btn-warning" type="submit">Create</button>
+	</form>
 </div>
 
 @section Scripts
@@ -33,5 +48,6 @@
     <script>
         loadPhotos();
         initFilter();
+        initCreateForm();
     </script>
 }
