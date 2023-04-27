@@ -7,9 +7,16 @@
 
 <div class="container bg-light" id="menu">
     <div class="text-center pt-4 text-danger">
-        <h1>Titolo</h1>
+        <h1>Galleria</h1>
         <a href="@Url.Action("Create", "Photo")">Aggiungi foto</a>
         <h2>@ViewData["Message"]</h2>
+    </div>
+
+    <div id="back-filter">
+        <div class="form-field">
+            <label>Filtra per nome:</label>
+            <input id="back-search" placeholder="Nome" />
+        </div>
     </div>
 
     <table class="table">
@@ -18,18 +25,18 @@
                 <th scope="col" class="col-2">ID</th>
                 <th scope="col" class="col-3">Foto</th>
                 <th scope="col" class="col-3">Titolo</th>
-                <th scope="col" class="col-3"> Opzioni</th>
+                <th scope="col" class="col-3">Opzioni</th>
             </tr>
         </thead>
         <tbody>
             @for (int i = 0; i < Model.Length; i++)
                 {
-                    <tr>
+                    <tr id="row-@Model[i].Id">
                         <th class="align-middle" scope="row">@Model[i].Id</th>
                         <td class="align-middle w-25 pe-5">
                             <img class=" h-100 w-100" style="object-fit: cover;" src="/@Model[i].Url" alt="...">
                         </td>
-                        <td class="align-middle">@Model[i].Title</td>
+                        <td id="title-@Model[i].Id" class="align-middle">@Model[i].Title</td>
                         <td class="align-middle">
                             <div class="d-flex">
                                 <a class="btn btn-custom btn-secondary" href="/photo/show/@Model[i].Id">
@@ -74,4 +81,22 @@
             padding: 5px 10px;
         }
     </style>
+}
+
+@section Scripts
+{
+    <script>
+        const backfilter = document.querySelector("#back-search");
+        backfilter.addEventListener("keyup", function() {
+            const x = document.querySelectorAll("[id^='row']");
+            const title = document.querySelectorAll("[id^='title']");
+            for (let i = 0; i < x.length; i++) {
+                if (!title[i].textContent.toLowerCase().includes(backfilter.value.toLowerCase())) {
+                    x[i].style.display = "none";
+                } else {
+                    x[i].style.display = "table-row"
+                }
+            }
+        })
+    </script>
 }

@@ -13,8 +13,11 @@
     }
 @*    <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Autenticazione a due fattori</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Dati personali</a></li>*@
-    <li class="nav-item p-2 px-3 text-center fw-bold border-top border-bottom">GESTIONE CONTENUTI</li>
-    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Photo")">Galleria</a></li>
-    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Category")">Categorie</a></li>
-    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Category")">Messaggi</a></li>
+    @if (User.IsInRole("ADMIN"))
+    {
+        <li class="nav-item p-2 px-3 text-center fw-bold border-top border-bottom">GESTIONE CONTENUTI</li>
+        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Photo")">Galleria</a></li>
+        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Category")">Categorie</a></li>
+        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Category")">Messaggi</a></li>   
+    }
 </ul>

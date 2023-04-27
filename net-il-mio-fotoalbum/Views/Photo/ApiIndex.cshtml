@@ -10,7 +10,6 @@
 
     <p id="loader">...</p>
 
-    <p id="emptyMessage">Nessun elemento presente</p>
 
     <div>
         <div id="filter">
@@ -19,6 +18,8 @@
                 <input id="search-input" placeholder="Nome" />
             </div>
         </div>
+
+        <p class="mt-5" id="emptyMessage">Nessun elemento presente</p>
 
         <div id="table">
             <div id="photoList" class="row d-flex flex-wrap">
@@ -31,15 +32,15 @@
         <h3>Contattaci</h3>
 		<div class="form-group">
 			<label for="email">Email</label>
-            <input class="form-control" id="email" />
+            <input class="form-control" id="email" placeholder="Scrivi la tua mail"/>
 			<span id="email-errors"></span>
 		</div>
 		<div class="form-field">
 			<label for="text">Messaggio</label>
-            <textarea class="form-control" id="text"></textarea>
+            <textarea class="form-control" id="text" placeholder="Scrivi il tuo messaggio"></textarea>
             <span id="text-errors"></span>
 		</div>
-		<button class="my-3 btn btn-warning" type="submit">Create</button>
+		<button class="my-3 btn btn-warning" type="submit">Invia</button>
 	</form>
 </div>
 
