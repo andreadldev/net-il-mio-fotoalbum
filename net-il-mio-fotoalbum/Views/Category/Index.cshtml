@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Categorie";
     Layout = "/Views/Shared/_AdminLayout.cshtml";
     ViewData["categoryActive"] = true;
 }
@@ -30,27 +30,9 @@
                             <a class="btn btn-custom btn-secondary mx-1" href="/category/edit/@Model[i].Id">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
-                            <button type="button" class="btn btn-custom btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a class="btn btn-custom btn-danger" href="/category/delete/@Model[i].Id">
                                 <i class="fa-solid fa-trash"></i>
-                            </button>
-
-                                @*================MODAL================*@
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-
-                                        <div class="modal-body">
-                                            Sei sicuro?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Torna indietro</button>
-                                            <a class="btn btn-danger" href="/category/Delete/@Model[i].Id">Elimina</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                @*================MODAL================*@
-
+                            </a>
                         </div>
                     </td>
                 </tr>

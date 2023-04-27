@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Galleria";
     Layout = "/Views/Shared/_AdminLayout.cshtml";
     ViewData["photoActive"] = true;
 }
@@ -45,27 +45,9 @@
                                 <a class="btn btn-custom btn-secondary mx-1" href="/photo/edit/@Model[i].Id">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                            <button type="button" class="btn btn-custom btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-
-                            @*================MODAL================*@
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-
-                                            <div class="modal-body">
-                                                Sei sicuro?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Torna indietro</button>
-                                            <a class="btn btn-danger" href="/photo/Delete/@Model[i].Id">Elimina</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @*================MODAL================*@
-
+                                <a class="btn btn-custom btn-danger" href="/photo/Delete/@Model[i].Id">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
                             </div>
                         </td>
                     </tr>

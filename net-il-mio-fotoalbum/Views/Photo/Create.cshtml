@@ -21,7 +21,7 @@
         </div>
         <div class="mb-3 d-flex justify-content-between">
             <strong>Immagine:</strong>
-            <input asp-for="Photo.Url" />
+            <input asp-for="Photo.Url" type="file" class="form-control-file" />
             <span asp-validation-for="Photo.Url"></span>
         </div>
         <div class="mb-3">
